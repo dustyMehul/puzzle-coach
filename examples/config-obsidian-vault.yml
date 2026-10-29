@@ -1,0 +1,18 @@
+# Inside an Obsidian vault: wiki links, and a line per puzzle in the daily note.
+state_dir: learning/puzzles
+start_level: 5
+level_mode: adaptive
+categories:
+  - logic and deduction
+  - probability and expected value
+  - number and counting
+  - weighing and optimisation
+  - strategy and game theory
+  - lateral thinking
+  - Bayes and base rates          # free-text topic
+daily_target: 3
+scoring: strict
+interviewer: silent
+links: wiki
+daily_note: daily/{date}/{date}.md
+daily_note_section: "## Puzzle practice"

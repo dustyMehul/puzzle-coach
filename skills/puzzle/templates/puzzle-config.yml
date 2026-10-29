@@ -1,0 +1,33 @@
+# Puzzle coach settings. Change any value here, or ask with /puzzle config.
+# A missing key falls back to its default.
+
+state_dir: puzzles            # where the hub (puzzles.md) and sessions/ live
+
+# Difficulty: 1-3 easy, 4-5 medium, 6-7 medium-hard, 8-9 hard, 10 very hard
+start_level: 5                # used only when the hub is first created
+level_mode: adaptive          # adaptive: moves after every puzzle | fixed: stays at fixed_level
+fixed_level: 6
+level_min: 4                  # adaptive floor
+level_max: 10                 # adaptive ceiling
+
+# Topics. Remove the ones you don't want; add your own free-text topics.
+categories:
+  - logic and deduction
+  - probability and expected value
+  - number and counting
+  - weighing and optimisation
+  - strategy and game theory
+  - lateral thinking
+  - estimation
+category_order: rotate        # rotate | weakest | random
+
+daily_target: 3               # 0 = no target
+
+scoring: strict               # strict: the key "why" must be said aloud for a Solved
+                              # lenient: right answer + sound core idea is enough
+interviewer: silent           # silent: interview simulation | coach: also prompts you to check your answer
+time_limit_minutes: 0         # 0 = untimed
+
+links: markdown               # markdown | wiki (Obsidian [[links]])
+daily_note: ""                # optional, e.g. daily/{date}.md or journal/{date}/{date}.md
+daily_note_section: "## Puzzle practice"

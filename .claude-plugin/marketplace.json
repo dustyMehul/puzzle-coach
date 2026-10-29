@@ -1,0 +1,14 @@
+{
+  "name": "puzzle-coach",
+  "description": "Interview-puzzle practice for Claude Code.",
+  "owner": {
+    "name": "Mehul Singh Rathore"
+  },
+  "plugins": [
+    {
+      "name": "puzzle-coach",
+      "source": "./",
+      "description": "Interview-puzzle practice with adaptive difficulty, hints on request and honest reviews."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "puzzle-coach",
+  "version": "0.1.0",
+  "description": "Interview-puzzle practice for Claude Code: adaptive difficulty, a quiet interviewer, hints on request, honest reviews.",
+  "author": {
+    "name": "Mehul Singh Rathore"
+  },
+  "license": "MIT",
+  "keywords": ["puzzles", "interview-prep", "brain-teasers", "practice", "skill"]
+}

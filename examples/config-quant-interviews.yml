@@ -1,0 +1,17 @@
+# Quant / trading interview prep: hard probability-heavy puzzles, strict scoring, 20-minute limit.
+state_dir: puzzles
+start_level: 7
+level_mode: adaptive
+level_min: 6
+level_max: 10
+categories:
+  - probability and expected value
+  - number and counting
+  - strategy and game theory
+  - estimation
+category_order: weakest
+daily_target: 3
+scoring: strict
+interviewer: silent
+time_limit_minutes: 20
+links: markdown

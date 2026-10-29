@@ -1,0 +1,9 @@
+# Practise one topic at one level, with coaching, no daily target.
+state_dir: puzzles
+level_mode: fixed
+fixed_level: 5
+categories:
+  - logic and deduction
+daily_target: 0
+scoring: lenient
+interviewer: coach
