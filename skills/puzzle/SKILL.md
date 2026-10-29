@@ -12,7 +12,7 @@ Two roles run in one chat:
 All state lives in plain Markdown files, so any chat (new or old) can pick up where the last one stopped.
 
 ## Files
-- **Config**: `.claude/puzzle-config.yml` in the project, else `~/.claude/puzzle-config.yml`. The project file wins. If neither exists, run **Setup** (below) before the first puzzle.
+- **Config**: the first of these that exists: `.claude/puzzle-config.yml` or `puzzle-config.yml` in the project root, then `~/.claude/puzzle-config.yml` for all projects. If none exists, run **Setup** (below) before the first puzzle.
 - **State folder**: `state_dir` from the config (default `puzzles/`, relative to the project root).
   - `<state_dir>/puzzles.md`: the hub. Current level, log, patterns. Template: `templates/hub.md`.
   - `<state_dir>/sessions/`: one file per puzzle. Template: `templates/session.md`.
@@ -48,7 +48,7 @@ Run on first use, or on `/puzzle setup`.
    - quant / trading: probability and expected value, number and counting, strategy and game theory, estimation
    - consulting / case: estimation, logic and deduction, weighing and optimisation
    - software / tech: logic and deduction, number and counting, weighing and optimisation, lateral thinking
-3. Write the config from `templates/puzzle-config.yml`, filled in with the answers, and create the state folder and hub from `templates/hub.md`. Ask whether the config should be project-wide (`.claude/`) or user-wide (`~/.claude/`); default to project.
+3. Write the config from `templates/puzzle-config.yml`, filled in with the answers, and create the state folder and hub from `templates/hub.md`. Ask whether the config should be for this project or for all projects; default to this project. In Claude Code, write `.claude/puzzle-config.yml` (or `~/.claude/puzzle-config.yml`); in other agents, write `puzzle-config.yml` in the project root.
 4. Show the resulting settings in a few lines and start the first puzzle.
 
 ### Config keys and defaults
@@ -134,9 +134,10 @@ If a key is missing, use its default. If a value is invalid, say so once, use th
 - `/puzzle recap`: from the hub log, per category: count, results, average level. Then the level trend over the last 10 puzzles, the top two strengths and the top two things to work on (from Patterns), and one concrete habit to try next. Read-only unless the user asks to save it.
 
 ## Rules
-- Get the time with `date "+%H:%M"` and the date with `date "+%Y-%m-%d"`. Never guess them. A puzzle belongs to the day it started, even if it ends after midnight.
+- Get the time with `date "+%H:%M"` and the date with `date "+%Y-%m-%d"`. Never guess them. If you can't run shell commands, use the date and time your environment gives you, or ask the user. A puzzle belongs to the day it started, even if it ends after midnight.
 - The level carries across days; there is no reset.
 - Solutions and reviews go in session files only. The hub log holds results, not answers.
 - Session file names are `puzzle-YYYY-MM-DD-N-short-name.md` (N = number for that day), so they are unique.
 - Links follow `links`: `markdown` → `[name](sessions/file.md)`; `wiki` → `[[file-name]]`.
 - Use they/them for the user unless they have said otherwise.
+- **No file access** (for example a chat app): run the puzzles the same way, but keep the state in the conversation. At the end of each review, print the updated hub (current level, log row, patterns) in one block so the user can save it and paste it into the next chat.

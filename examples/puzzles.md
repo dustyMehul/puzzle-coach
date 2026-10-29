@@ -1,6 +1,6 @@
 # Puzzles
 
-Interview-puzzle practice with adaptive difficulty. Run it with `/puzzle`. Settings: `.claude/puzzle-config.yml` (or `~/.claude/puzzle-config.yml`), or ask with `/puzzle config`.
+Interview-puzzle practice with adaptive difficulty. Run it with `/puzzle`. Settings: `puzzle-config.yml` (in `.claude/` or the project root), or ask with `/puzzle config`.
 
 **Current level: 6**
 

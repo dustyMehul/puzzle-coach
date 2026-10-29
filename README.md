@@ -1,6 +1,6 @@
 # puzzle-coach
 
-Interview-puzzle practice inside [Claude Code](https://claude.com/claude-code). Type `/puzzle` and Claude sets a puzzle at your level, then listens the way a real interviewer does while you think out loud: no hints unless you ask, no "you're on the right track". When you finish, you get an honest review and the difficulty moves up or down.
+Interview-puzzle practice for [Claude Code](https://claude.com/claude-code) and other AI agents. Type `/puzzle` and Claude sets a puzzle at your level, then listens the way a real interviewer does while you think out loud: no hints unless you ask, no "you're on the right track". When you finish, you get an honest review and the difficulty moves up or down.
 
 Everything is saved as plain Markdown in your project, so you can stop mid-puzzle, close the chat, and pick it up later with `/puzzle`.
 
@@ -26,6 +26,23 @@ git clone https://github.com/dustyMehul/puzzle-coach.git
 cp -r puzzle-coach/skills/puzzle ~/.claude/skills/puzzle
 ```
 
+## Other agents
+The skill is plain Markdown, so any agent that can read and write files can run it.
+
+| Tool | Setup |
+|---|---|
+| **OpenAI Codex CLI, Cursor, GitHub Copilot and other `AGENTS.md` readers** | Copy `skills/puzzle/` into your project and add the lines from [`AGENTS.md`](AGENTS.md) to your project's `AGENTS.md` |
+| **Gemini CLI** | Copy `skills/puzzle/` into your project and add the lines from [`GEMINI.md`](GEMINI.md) to your project's `GEMINI.md` |
+| **Tools that read `SKILL.md` directly** | Put `skills/puzzle/` wherever the tool looks for skills |
+
+Outside Claude Code, say "puzzle" (or "give me a puzzle") if `/puzzle` isn't a command in your tool. The config goes in `puzzle-config.yml` at your project root.
+
+You can also open a clone of this repo in any of these tools and practise right there: the root `AGENTS.md` and `GEMINI.md` already point to the skill, and your practice files are git-ignored.
+
+**Claude.ai on the web, desktop or mobile.** Zip the `skills/puzzle` folder and upload it as a skill (in Settings, under Skills; code execution must be on). Then say "puzzle" in any chat. Files made in a chat don't carry over to the next one, so the same rule applies as for other chat apps: save the hub the agent prints after each review, and paste it in next time. Or keep it in a Claude Project's files. **Claude Code on the web** runs on a GitHub repo, so it works exactly like the desktop version, and committing your `puzzles/` folder keeps your history.
+
+**Other chat apps (ChatGPT, Gemini, Grok).** Paste the contents of [`skills/puzzle/SKILL.md`](skills/puzzle/SKILL.md) into the app's custom instructions, or into a project, along with [`references/categories.md`](skills/puzzle/references/categories.md). Puzzles, hints and reviews work the same way. Chat apps can't save files, though, so after each review the agent prints the updated hub. Save it, and paste it into your next chat to keep your level and history.
+
 ## Quick start
 1. Open Claude Code in the folder where you want your practice notes to live.
 2. Type `/puzzle`. The first time, it asks a few setup questions: your goal, starting level, adaptive or fixed level, topics, and daily target. Then it writes the config.
@@ -48,7 +65,7 @@ cp -r puzzle-coach/skills/puzzle ~/.claude/skills/puzzle
 | `/puzzle setup` | Run setup again |
 
 ## Configuration
-Settings live in `.claude/puzzle-config.yml` (for this project) or `~/.claude/puzzle-config.yml` (for all projects). The project file wins. Edit the file directly, or just tell Claude ("only probability and counting from now on", "make it fixed at level 6").
+Settings live in `puzzle-config.yml`: in your project's `.claude/` folder or root (for this project), or in `~/.claude/` (for all projects). The project file wins. Edit the file directly, or just tell the agent ("only probability and counting from now on", "make it fixed at level 6").
 
 | Key | Default | Options |
 |---|---|---|

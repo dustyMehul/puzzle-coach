@@ -1,4 +1,5 @@
 .DS_Store
 # your own practice state, if you try the skill inside this repo
-puzzles/
-.claude/puzzle-config.yml
+/puzzles/
+/.claude/puzzle-config.yml
+/puzzle-config.yml
