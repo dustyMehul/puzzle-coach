@@ -1,67 +1,123 @@
-# puzzle-coach
+<div align="center">
 
-Interview-puzzle practice for [Claude Code](https://claude.com/claude-code) and other AI agents. Type `/puzzle` and Claude sets a puzzle at your level, then listens the way a real interviewer does while you think out loud: no hints unless you ask, no "you're on the right track". When you finish, you get an honest review and the difficulty moves up or down.
+# 🧩 Puzzle Coach
 
-Everything is saved as plain Markdown in your project, so you can stop mid-puzzle, close the chat, and pick it up later with `/puzzle`.
+**A puzzle interviewer that won't help you.**
 
-## What it does
-- **Adaptive difficulty.** Levels go from 1 to 10. Solve a puzzle and the next one is a level harder; miss one and it eases off. Or fix the level.
-- **Your topics.** Seven built-in categories (logic, probability, counting, weighing, strategy, lateral thinking, estimation). Turn some off, or add your own free-text topics.
-- **A quiet interviewer.** It reflects back what you said and asks "Is that your final answer?" every time, whether you're right or wrong. It won't steer you.
-- **Hints only on request**, in three sizes: small, big, or the full solution. Each one is recorded and affects the score.
-- **Honest reviews.** You get the result, what was strong, where your reasoning broke, the clean solution, and how an interviewer would read your answer.
-- **Patterns over time.** The hub notes strengths and repeated slips (such as "doesn't sense-check the final number"), and `/puzzle recap` sums them up.
-- **No repeats.** A puzzle in your log, or a close variant of one, never comes back.
+Brain-teaser practice for Claude and other AI agents. It sets the puzzle, stays quiet while you think, and then tells you honestly how you did.
 
-## Install
-**As a plugin** (the command becomes `/puzzle-coach:puzzle`):
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)
+![Works with](https://img.shields.io/badge/works%20with-Claude%20·%20Codex%20·%20Gemini%20·%20Cursor-555)
+
+</div>
+
+---
+
+Ask a chatbot for a puzzle and it'll cheer you on, drop hints you never asked for, and call a half-answer "great thinking!". A real interviewer won't. They'll sit there, say *"okay, keep going"*, and wait to hear whether you can explain **why**.
+
+Puzzle Coach is that interviewer.
+
+```text
+You      > /puzzle
+
+Coach    > Puzzle #2 today · Level 7 · Weighing and optimisation
+
+           Four people must cross a bridge at night with one torch.
+           At most two cross at a time, at the slower one's pace.
+           Their times: 1, 2, 5 and 10 minutes. What is the fastest
+           way to get everyone across?
+
+           Talk me through your thinking.
+
+You      > If 1 escorts everyone, that's 2+1+5+1+10 = 19...
+           but what if 5 and 10 cross together?
+
+Coach    > Okay. You want 5 and 10 to cross together. Keep going.
+
+You      > 1 and 2 over, 1 back, 5 and 10 over, 2 back, 1 and 2 over.
+           That's 2+1+10+2+2... 16.
+
+Coach    > Is that your final answer?
+
+You      > Wait. That's 17, not 16.
+
+Coach    > ...
+```
+
+At the end you get a straight review: the result, what was strong, where your reasoning broke, the clean solution, and how an interviewer would read your answer. Then the next puzzle gets harder, or easier.
+
+## ✨ Why it's different
+
+| Most AI puzzle chats | Puzzle Coach |
+|---|---|
+| Hints you didn't ask for | **Silent until you ask:** small hint, big hint or the full solution, and each one counts against your score |
+| "Great job!" for any answer | **Honest scoring.** Strict mode won't accept a claim as a proof, just like an interviewer |
+| The same difficulty every time | **Adapts after every puzzle,** from level 1 to 10 |
+| Forgets you when the chat ends | **Remembers:** your level, every puzzle, and your recurring slips, saved as Markdown in your project |
+| Repeats the classics | **No repeats,** not even close variants |
+| Only gives the answer | **Spots patterns in how you think,** like *"states the pattern but doesn't prove it (seen 4 times)"* |
+
+## 🚀 Get started in 30 seconds
+
+**Claude Code**
 ```
 /plugin marketplace add dustyMehul/puzzle-coach
 /plugin install puzzle-coach@puzzle-coach
 ```
+Then type `/puzzle-coach:puzzle`. The first run asks a few quick setup questions (goal, level, topics, daily target), and then you're in.
 
-**As a plain skill** (the command is `/puzzle`). Download [`puzzle-skill.zip`](https://github.com/dustyMehul/puzzle-coach/releases/latest/download/puzzle-skill.zip) from the latest release and unzip it into `~/.claude/skills/` (for all projects) or into one project's `.claude/skills/`. You should end up with `.claude/skills/puzzle/SKILL.md`.
+**Claude.ai (web, desktop, mobile):** download [`puzzle-skill.zip`](https://github.com/dustyMehul/puzzle-coach/releases/latest/download/puzzle-skill.zip) and upload it as a skill in Settings (code execution must be on). Then say *"give me a puzzle"*.
 
-## Other agents
-The skill is plain Markdown, so any agent that can read and write files can run it.
+<details>
+<summary><b>Other ways to install: plain skill, Codex, Gemini CLI, Cursor, Copilot, ChatGPT…</b></summary>
 
-| Tool | Setup |
+<br>
+
+| Where | How |
 |---|---|
-| **OpenAI Codex CLI, Cursor, GitHub Copilot and other `AGENTS.md` readers** | Copy `skills/puzzle/` into your project and add the lines from [`AGENTS.md`](AGENTS.md) to your project's `AGENTS.md` |
-| **Gemini CLI** | Copy `skills/puzzle/` into your project and add the lines from [`GEMINI.md`](GEMINI.md) to your project's `GEMINI.md` |
-| **Tools that read `SKILL.md` directly** | Put `skills/puzzle/` wherever the tool looks for skills |
+| **Claude Code, as a plain skill** (command: `/puzzle`) | Unzip [`puzzle-skill.zip`](https://github.com/dustyMehul/puzzle-coach/releases/latest/download/puzzle-skill.zip) into `~/.claude/skills/`, so that you have `~/.claude/skills/puzzle/SKILL.md` |
+| **Codex CLI, Cursor, GitHub Copilot** (and other `AGENTS.md` readers) | Copy `skills/puzzle/` into your project and add the lines from [`AGENTS.md`](AGENTS.md) to your project's `AGENTS.md` |
+| **Gemini CLI** | Copy `skills/puzzle/` into your project and add the lines from [`GEMINI.md`](GEMINI.md) to your `GEMINI.md` |
+| **ChatGPT, Gemini, Grok** (chat apps) | Paste [`SKILL.md`](skills/puzzle/SKILL.md) and [`categories.md`](skills/puzzle/references/categories.md) into custom instructions or a project |
 
-Outside Claude Code, say "puzzle" (or "give me a puzzle") if `/puzzle` isn't a command in your tool. The config goes in `puzzle-config.yml` at your project root.
+**About chat apps:** they can't save files between chats, so after each review the coach prints your updated hub. Save it (a Claude or ChatGPT Project file works well) and the next chat picks up where you left off. **Claude Code on the web** runs on a GitHub repo, so commit your `puzzles/` folder to keep your history.
 
-You can also open a clone of this repo in any of these tools and practise right there: the root `AGENTS.md` and `GEMINI.md` already point to the skill, and your practice files are git-ignored.
+Outside Claude Code, just say *"puzzle"* wherever `/puzzle` isn't a command.
 
-**Claude.ai on the web, desktop or mobile.** Download [`puzzle-skill.zip`](https://github.com/dustyMehul/puzzle-coach/releases/latest/download/puzzle-skill.zip) from the latest release (or zip the `skills/puzzle` folder yourself) and upload it as a skill (in Settings, under Skills; code execution must be on). Then say "puzzle" in any chat. Files made in a chat don't carry over to the next one, so the same rule applies as for other chat apps: save the hub the agent prints after each review, and paste it in next time. Or keep it in a Claude Project's files. **Claude Code on the web** runs on a GitHub repo, so it works exactly like the desktop version, and committing your `puzzles/` folder keeps your history.
+</details>
 
-**Other chat apps (ChatGPT, Gemini, Grok).** Paste the contents of [`skills/puzzle/SKILL.md`](skills/puzzle/SKILL.md) into the app's custom instructions, or into a project, along with [`references/categories.md`](skills/puzzle/references/categories.md). Puzzles, hints and reviews work the same way. Chat apps can't save files, though, so after each review the agent prints the updated hub. Save it, and paste it into your next chat to keep your level and history.
+## 🎛️ Make it yours
 
-## Quick start
-1. Open Claude Code in the folder where you want your practice notes to live.
-2. Type `/puzzle`. The first time, it asks a few setup questions: your goal, starting level, adaptive or fixed level, topics, and daily target. Then it writes the config.
-3. Think out loud. Ask for a hint if you need one. Say when you're done, or give a final answer.
-4. Read the review, then type `/puzzle` again for the next one (in the same chat or a new one).
+Tell it in plain words (*"only probability from now on"*, *"make it timed, 20 minutes"*), or edit `puzzle-config.yml`:
 
-## Commands
-| Command | What it does |
+```yaml
+level_mode: adaptive        # or fixed
+level_min: 6                # adaptive range
+level_max: 10
+categories:                 # pick any, or add your own topics
+  - probability and expected value
+  - strategy and game theory
+  - Bayes and base rates    # ← free-text topics work too
+category_order: weakest     # rotate · weakest · random
+scoring: strict             # strict: say WHY · lenient: right idea is enough
+interviewer: silent         # silent: interview mode · coach: nudges you to check your answer
+time_limit_minutes: 20
+daily_target: 3
+```
+
+Ready-made setups:
+
+| Preset | For |
 |---|---|
-| `/puzzle` | Resume the open puzzle, or start the next |
-| `/puzzle hint` · `big hint` · `solution` | Ask for help (plain words work too) |
-| `/puzzle done` | You've finished; get the review |
-| `/puzzle skip` | Drop the open puzzle with no level change |
-| `/puzzle level 8` | Next puzzle only, at level 8 |
-| `/puzzle probability` | Next puzzle only, from that topic |
-| `/puzzle level 7 logic` | Both at once |
-| `/puzzle status` | Today's count, current level, open puzzle |
-| `/puzzle recap` | Strengths, weak topics, level trend |
-| `/puzzle config` | Show settings; change one with `/puzzle config scoring lenient` or plain words |
-| `/puzzle setup` | Run setup again |
+| [🎯 Quant interviews](examples/config-quant-interviews.yml) | Hard, probability-heavy, timed, weakest topics first |
+| [🧘 One topic, fixed level](examples/config-fixed-level-one-topic.yml) | Calm practice with coaching and no daily target |
+| [🗂️ Obsidian vault](examples/config-obsidian-vault.yml) | Wiki links, plus a line in your daily note for every puzzle |
 
-## Configuration
-Settings live in `puzzle-config.yml`: in your project's `.claude/` folder or root (for this project), or in `~/.claude/` (for all projects). The project file wins. Edit the file directly, or just tell the agent ("only probability and counting from now on", "make it fixed at level 6").
+<details>
+<summary><b>All settings</b></summary>
+
+<br>
 
 | Key | Default | Options |
 |---|---|---|
@@ -70,45 +126,61 @@ Settings live in `puzzle-config.yml`: in your project's `.claude/` folder or roo
 | `level_mode` | `adaptive` | `adaptive` · `fixed` |
 | `fixed_level` | `6` | level used in fixed mode |
 | `level_min` / `level_max` | `4` / `10` | range for adaptive mode |
-| `categories` | all seven | any subset of the built-ins, plus free-text topics |
-| `category_order` | `rotate` | `rotate` (balanced) · `weakest` (practise what you miss) · `random` |
+| `categories` | all seven | built-ins plus free-text topics |
+| `category_order` | `rotate` | `rotate` · `weakest` · `random` |
 | `daily_target` | `3` | `0` for no target |
-| `scoring` | `strict` | `strict`: the key "why" must be said aloud · `lenient`: right answer + sound core idea |
-| `interviewer` | `silent` | `silent`: interview simulation · `coach`: also prompts you to check your answer |
+| `scoring` | `strict` | `strict` · `lenient` |
+| `interviewer` | `silent` | `silent` · `coach` |
 | `time_limit_minutes` | `0` | `0` for untimed |
-| `links` | `markdown` | `markdown` · `wiki` (Obsidian `[[links]]`) |
-| `daily_note` | none | e.g. `daily/{date}.md`: adds a line per puzzle to your daily note |
+| `links` | `markdown` | `markdown` · `wiki` (Obsidian) |
+| `daily_note` | none | e.g. `daily/{date}.md` |
 
-Ready-made configs are in [`examples/`](examples/):
-- [quant interviews](examples/config-quant-interviews.yml): hard, probability-heavy, timed
-- [one topic at a fixed level](examples/config-fixed-level-one-topic.yml): coach mode, no target
-- [Obsidian vault](examples/config-obsidian-vault.yml): wiki links and daily notes
+The config lives in `.claude/puzzle-config.yml` or `puzzle-config.yml` in your project, or in `~/.claude/puzzle-config.yml` to cover all projects.
 
-## Scoring
-| Result | Strict (default) | Lenient | Level |
-|---|---|---|---|
-| Solved | right answer, no hints, and the reasoning said aloud | right answer and a sound core idea, no hints | +1 |
-| Partial | small hint, a missing argument, or an arithmetic slip | small hint or an arithmetic slip | 0 |
-| Not solved | big hint, solution, or a wrong final answer | same | −1 |
+</details>
 
-Strict mode scores what you actually said, as an interviewer would. In a real interview, "as long as B can move, A can move" is a claim, not a proof. Pick lenient if you'd rather practise spotting the idea.
+## 🕹️ Commands
 
-## Files it creates
+| Say | What happens |
+|---|---|
+| `/puzzle` | Resume the open puzzle, or start the next |
+| `hint` · `big hint` · `solution` | Ask for help (it costs you) |
+| `done` | Get your review |
+| `/puzzle level 9 logic` | One-off: next puzzle at level 9, from logic |
+| `/puzzle skip` | Drop this one, no penalty |
+| `/puzzle status` | Today's count, your level, the open puzzle |
+| `/puzzle recap` | Strengths, weak spots, level trend, one habit to try |
+| `/puzzle config` | See or change settings |
+
+## 📈 How the level moves
+
+| You… | Strict scoring | Level |
+|---|---|---|
+| Got it, no hints, **and said why** | ✅ Solved | **+1** |
+| Needed a small hint, skipped the argument, or slipped on arithmetic | 🟡 Partial | ±0 |
+| Needed a big hint or the solution, or gave a wrong answer | ❌ Not solved | **−1** |
+
+Seven topics: **logic · probability · counting · weighing · strategy · lateral thinking · estimation**. Difficulty runs from *"three switches and a bulb"* (level 4) up to *"blue-eyed islanders, the general case"* (level 10).
+
+## 📁 What it saves
+
 ```
 puzzles/
-├── puzzles.md            # hub: current level, log, patterns
+├── puzzles.md                              ← your level, every result, your patterns
 └── sessions/
-    └── puzzle-2026-01-05-1-100-lockers.md   # one per puzzle: statement, thinking trail, solution, review
+    └── puzzle-2026-01-05-1-100-lockers.md  ← puzzle, your thinking trail, solution, review
 ```
-Solutions are only written at review time, so you won't see them by accident while browsing your notes. See [`examples/`](examples/) for a sample hub and session.
 
-## Tips
-- **One puzzle per chat** works well: `/puzzle`, solve, review, close. The files carry the state.
-- **Say the check out loud** before you commit: test an easy case, or compare against your first step. It's the most common way solid setups end in wrong answers.
-- If you already know a puzzle, say so and it'll pick another.
+Plain Markdown that you own. Solutions are only written after you finish, so browsing your notes never spoils a puzzle. Want to see one? Look at the [example hub](examples/puzzles.md) and [example session](examples/sessions/puzzle-2026-01-05-1-100-lockers.md).
 
-## Contributing
-Issues and pull requests are welcome, especially new puzzle families for `skills/puzzle/references/categories.md`, with a level and a source for the answer.
+## 💡 Tips from real use
+- **Say the check out loud.** Most good setups that end in a wrong answer fail at the last step. Before you commit, plug in an easy case.
+- **"It works" isn't "here's why".** In strict mode, *"as long as B can move, A can move"* is a claim. Explaining why it's true is what gets you to Solved.
+- **One puzzle per chat** keeps things snappy. Your progress is in the files, not the chat.
+- **Already know a puzzle?** Say so. It swaps it out at no cost, and interviewers respect that too.
+
+## 🤝 Contributing
+New puzzle families are very welcome. Add them to [`categories.md`](skills/puzzle/references/categories.md) with a level and a source for the answer. Ideas, bugs and presets: [open an issue](https://github.com/dustyMehul/puzzle-coach/issues).
 
 ## License
-[MIT](LICENSE)
+[MIT](LICENSE). Go practise. 🧠
