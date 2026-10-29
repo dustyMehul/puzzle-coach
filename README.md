@@ -20,11 +20,7 @@ Everything is saved as plain Markdown in your project, so you can stop mid-puzzl
 /plugin install puzzle-coach@puzzle-coach
 ```
 
-**As a plain skill** (the command is `/puzzle`). Clone the repo, then copy the skill folder into your user skills, or into one project's `.claude/skills/`:
-```bash
-git clone https://github.com/dustyMehul/puzzle-coach.git
-cp -r puzzle-coach/skills/puzzle ~/.claude/skills/puzzle
-```
+**As a plain skill** (the command is `/puzzle`). Download [`puzzle-skill.zip`](https://github.com/dustyMehul/puzzle-coach/releases/latest/download/puzzle-skill.zip) from the latest release and unzip it into `~/.claude/skills/` (for all projects) or into one project's `.claude/skills/`. You should end up with `.claude/skills/puzzle/SKILL.md`.
 
 ## Other agents
 The skill is plain Markdown, so any agent that can read and write files can run it.
